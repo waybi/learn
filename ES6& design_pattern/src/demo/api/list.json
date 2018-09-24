@@ -1,0 +1,32 @@
+[
+	{
+		"id":1,
+		"name":"JS 面试题",
+		"discount":1,
+		"price":149
+	},
+	{
+		"id":2,
+		"name":"JS 高级面试题",
+		"discount":1,
+		"price":366
+	},
+	{
+		"id":3,
+		"name":"jquery 源码解读",
+		"discount":0,
+		"price":45
+	},
+	{
+		"id":4,
+		"name":"React全家桶",
+		"discount":0,
+		"price":399
+	},
+	{
+		"id":5,
+		"name":"<数据结构于算法>",
+		"discount":0,
+		"price":299
+	}
+]
