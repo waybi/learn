@@ -17,30 +17,64 @@
 
         .wrapper {
             margin: 30px 30px 0 200px;
+            position: static;
         }
 
-        .like-btn {
-            width: 200px;
+        .absolute {
+            position: absolute;
+            left: 50;
+            top: 50%;
+            width: 100px;
             height: 100px;
+            background: #456;
         }
     </style>
 </head>
 
 <body>
-    <div class='wrapper'></div>
-    <script src="./button.js"></script>
     <script>
-        var wrapper = document.querySelector('.wrapper')
-        var likeButton = new LikeButton()
-        mount(new LikeButton({ bgColor: 'red' }), wrapper)
+        class Subject {
+            constructor() {
+                this.state = 0
+                this.observers = []
+            }
+            getState() {
+                return this.state
+            }
+            setState(state) {
+                this.state = state
+                this.notifyAllObservers()
+            }
+            notifyAllObservers() {
+                this.observers.forEach(observer => {
+                    observer.update()
+                })
+            }
+            attach(observer) {
+                this.observers.push(observer)
+            }
+            fire() {
+                this.observers.forEach(observer => {
+                    observer.update()
+                })
+            }
+        }
 
-        // var html = likeButton.render();
-        // wrapper.appendChild(html)
-        // likeButton.onStateChange = (oldEl, newEl) => {
-        //     wrapper.insertBefore(newEl, oldEl) // 插入新的元素
-        //     wrapper.removeChild(oldEl) // 删除旧的元素
-        // }
-        
+        class Observer {
+            constructor(name, subject) {
+                this.name = name
+                this.subject = subject
+                this.subject.attach(this)
+            }
+            update() {
+                console.log(`${this.name} update, state: ${this.subject.getState()}`)
+            }
+        }
+        let s = new Subject()
+        let o1 = new Observer('o1', s)
+        let o2 = new Observer('o2', s)
+        let o3 = new Observer('o3', s)
+        s.fire();   
     </script>
 </body>
 

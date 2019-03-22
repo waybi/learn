@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3幻灯片</title>
+    <style type="text/css" media="screen">
+        .items {
+            width: 280px;
+            height: 150px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            border-radius: 10px;
+            background-size: cover;
+            /* -webkit-transform: translateZ(0); */
+            /* transform: translateZ(0); */
+            /* background-repeat: no-repeat; */
+            -webkit-animation: slide 10s ease 0s infinite normal both;
+            animation: slide 10s ease 0s infinite normal both;
+            /* -webkit-transform-origin: center center; */
+            /* transform-origin: center center; */
+
+        }
+
+
+
+        @-webkit-keyframes slider {
+            /* 0% {
+                background-image: url(1.jpg);
+            }
+
+            25% {
+                background-image: url(2.jpg);
+
+            }
+
+            50% {
+                background-image: url(3.jpg);
+
+            }
+
+            75% {
+                background-image: url(4.jpg);
+
+            }
+
+            100% {
+                background-image: url(5.jpg);
+
+            } */
+        }
+
+        @keyframes slider {
+            /* 0% {
+                background-image: url(1.jpg);
+            }
+
+            25% {
+                background-image: url(2.jpg);
+
+            }
+
+            50% {
+                background-image: url(3.jpg);
+
+            }
+
+            75% {
+                background-image: url(4.jpg);
+
+            }
+
+            100% {
+                background-image: url(5.jpg);
+
+            } */
+
+            0% {
+                transform: translateX(0%);
+            }
+
+            16.7% {
+                transform: translateX(0%);
+            }
+
+            33.3% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(-100%);
+            }
+
+            66.7% {
+                transform: translateX(-200%);
+            }
+
+            83.3% {
+                transform: translateX(-200%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <div class="items"></div>
+    </div>
+</body>
+
+</html>

@@ -1,76 +1,201 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<meta charset="UTF-8">
-	<title>JavaScript面试题</title>
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>双飞翼布局</title>
+	<style type="text/css">
+		.wrap {
+			background: lightpink;
 		}
 
-		.father-layout {
-			background: pink;
-		}
-
-		.father-layout .left {
-			float: left;
-			width: 100px;
+		.left {
+			width: 200px;
 			height: 100px;
-			background: green;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: coral;
 		}
 
-		.father-layout .right {
-			overflow: hidden;
-			height: 150px;
-			/*右侧标准流里的元素，比左侧浮动的元素要高*/
-			background: red;
+		.right {
+			width: 120px;
+			height: 100px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: lightblue;
+		}
+
+		.middle {
+			height: 50px;
+			margin: 0 140px 0 220px;
+			background: #555;
 		}
 	</style>
-
-	<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script> -->
-	<script type="text/javascript">
-		/**
-		 * @param {String}  errorMessage   错误信息
-		 * @param {String}  scriptURI      出错的文件
-		 * @param {Long}    lineNumber     出错代码的行号
-		 * @param {Long}    columnNumber   出错代码的列号
-		 * @param {Object}  errorObj       错误的详细信息，Anything
-		 */
-		window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj) {
-			console.log("错误信息：", errorMessage);
-			console.log("出错文件：", scriptURI);
-			console.log("出错行号：", lineNumber);
-			console.log("出错列号：", columnNumber);
-			console.log("错误详情：", errorObj);
-		}
-
-		// window.addEventListener('error',function(e){
-		// 	console.log('事件捕获')
-		// 	console.log(e)
-		// },true); 
-
-	</script>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
+	<div class="orders"> 
+		<ul>
+			<li>order1</li>
+			<li>order2</li>
+			<li>order3</li>
+		</ul>
+	</div>
+	<div class="products">
+		<ul>
+			<li>
+				<span>product1</span>
+			</li>
+			<li>
+				<span>product2</span>
+			</li>
+		</ul>
+		<hr />
+		<ul>
+			<li>
+				<span>product3</span>
+			</li>
+			<li>
+				<span>product4</span>
+			</li>
+		</ul>
+	</div>
+	<script>
+		// function coordinate(arr1, arr2) {
+		// 	let arr = []
+		// 	for(var i = 0; i < arr1.length; i++){
+		// 		for(var j = 0; j < arr2.length; j++){
+		// 			let xy = {}
+		// 			xy.x = arr1[i]
+		// 			xy.y = arr2[j]
+		// 			arr.push(xy)
+		// 		}
+		// 	}
+		// 	console.log(arr)
+		// }
+		// coordinate([1,2,3],[4,5])
 
-	<section class="father-layout" id="ev">
-		<div class="left">
-			左侧，生命壹号
-		</div>
-		<div class="right">
-			右侧，smyhvae，smyhvae，smyhvae，smyhvae，smyhvae，smyhvae，smyhvae，smyhvae，smyhvae，smyhvae，smyhvae，smyhvae，
-		</div>
-	</section>
+		key = ['a', 'b', 'c']
+		value = '123.123'
 
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery11.js" crossorigin></script>
-	<!-- <script>
-		throw new Error('出错了')
-	</script> -->
-	<!-- <script src="//baidu.com/error.js" crossorigin></script> -->
+		function parse(arr) {
+			return arr.reduceRight((result, key) => {
+				return {[key]: result }
+			}, value);
+		}
+		console.log( parse(key) )
 
+	</script>
+	<script type="text/javascript">
+		// var oEle = document.querySelector('#app')
+		// oEle.addEventListener('click', show, true)
+		// function show(e) {
+		// 	e = e || window.event
+		// 	var target = e.target
+		// 	if (target && target.nodeName.toLowerCase() === 'div') {
+		// 		console.log(target.innerHTML)
+		// 	}
+		// }
+
+		// var oDivs = document.querySelectorAll('#app div');
+		// for (var i = 0; i < oDivs.length; i++) {
+		// 	(function (i) {
+		// 		oDivs[i].onclick = function (e) {
+		// 			e.stopPropagation()
+		// 			console.log(this.innerHTML)
+		// 		}
+		// 	})(i)
+		// }
+
+		// const numberOfArrays = [[], 1, "2", [3, 4]].reduce(
+		// 	(acc, cv) => {
+		// 		acc+(cv.length ? 1 : 0)
+		// 	}
+		// ,0)
+
+		 /* const json = [{
+		"version": 12345678901234567,
+			"value": "a"
+		}, {
+			"version": 12345678901234568,
+				"value": "b"
+		}, {
+			"version": 12345678901234569,
+				"value": "c"
+		}];
+
+		console.log(json.filter(t => t.version == 12345678901234567).length); */
+
+
+		// var f = 1;
+		// function A() {
+		// 	this.f = 2;
+		// }
+
+		// A.prototype.b = function (c) {
+		// 	this.d(c);
+		// }
+
+		// A.prototype.d = function (c) {
+		// 	console.log(c);
+		// }
+
+		// var d = e => {
+		// 	e(f);
+		// };
+
+		// const a = new A();
+
+		// d(a.b); 
+
+		/* let str = 'knotty'
+		function longestCommonPrefix(strs) {
+			let arr = {
+				a: 0,
+				b: 1,
+				c: 2,
+				d: 4,
+				e: 5,
+				f: 6,
+				g: 7,
+				h: 8,
+				i: 9,
+				j: 10,
+				k: 11,
+				l: 12,
+				m: 13,
+				n: 14,
+				o: 15,
+				p: 16,
+				q: 17,
+				r: 18,
+				s: 19,
+				t: 20,
+				u: 21,
+				v: 22,
+				w: 23,
+				x: 24,
+				y: 25,
+				z: 26
+			}
+			let strArr = strs.split("");
+			let target = arr[strArr[0]]
+			let flag = 0
+			for(var i = 1; i < strArr.length; i++){
+					if(target <= arr[strArr[i]]){
+						flag = i + 1; 
+						target = arr[strArr[i]]
+					}
+			}
+			return flag
+		} */
+
+		// console.log(longestCommonPrefix(str))
+	</script>
 </body>
 
 </html>

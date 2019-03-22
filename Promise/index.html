@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise 原理</title>
+</head>
+
+<body>
+    <script>
+        function Promise(fn) {
+            var state = 'pending',
+                value = null,
+                callbacks = [];
+
+            this.then = function (onFulfilled) {
+                // if (state === 'pending') {
+                //     callbacks.push(onFulfilled);
+                //     return this;
+                // }
+                // onFulfilled(value);
+                // return this;
+
+                return new Promise(function (resolve) {
+                    handle({
+                        onFulfilled: onFulfilled || null,
+                        resolve: resolve
+                    });
+                });
+            };
+
+            function handle(callback) {
+                if (state === 'pending') {
+                    callbacks.push(callback);
+                    return;
+                }
+                //如果then中没有传递任何东西
+                if (!callback.onFulfilled) {
+                    callback.resolve(value);
+                    return;
+                }
+                var ret = callback.onFulfilled(value);
+                callback.resolve(ret);
+            }
+
+            function resolve(newValue) {
+                // value = newValue;
+                // state = 'fulfilled';
+                // setTimeout(function () {
+                //     callbacks.forEach(function (callback) {
+                //         callback(value);
+                //     });
+                // }, 0);
+
+                if (newValue && (typeof newValue === 'object' || typeof newValue === 'function')) {
+                    var then = newValue.then;
+                    if (typeof then === 'function') {
+                        then.call(newValue, resolve);
+                        return;
+                    }
+                }
+                state = 'fulfilled';
+                value = newValue;
+                setTimeout(function () {
+                    callbacks.forEach(function (callback) {
+                        handle(callback);
+                    });
+                }, 0);
+            }
+
+            fn(resolve);
+        }
+
+        // debugger
+        function getUserId() {
+            return new Promise(function (resolve) {
+                //异步请求
+                // setTimeout(()=>{
+                resolve(10086)
+                // },1000)
+            })
+        }
+
+        var promise = getUserId()
+
+        promise
+            .then(getUserJobById)
+            .then(function (job) {
+                console.log(job)
+            });
+
+        function getUserJobById(id) {
+            return new Promise(function (resolve) {
+                resolve(`第二个promise,拿到上个promise传过来的id是::::${id}` );
+            });
+        }
+    </script>
+
+    <script>
+        function a() {
+            console.log('1')
+        }
+        function b() {
+            console.log('2')
+        }
+        a(b())
+    </script>
+</body>
+
+</html>

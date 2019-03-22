@@ -28,6 +28,7 @@ SortTestHelper.printArray = function(arr) {
  * @param {*} n 
  */
 SortTestHelper.testSort = function(name, fn, arr, n) {
+    console.log('正在使用：'+ name + '算法')
     var startTime = new Date()
     fn && fn(arr,n)
     var endTime = new Date()
@@ -37,7 +38,6 @@ SortTestHelper.testSort = function(name, fn, arr, n) {
     }
     var total = (endTime - startTime) / 1000   + 's'
 
-    console.log(total)
 }
 
 /**
@@ -46,7 +46,7 @@ SortTestHelper.testSort = function(name, fn, arr, n) {
  * @param {*} n 
  */
 SortTestHelper.isSort = function( arr, n) {
-    // console.log('排序后的数组',arr)
+    console.log('排序后的数组',arr)
     for(let i = 0; i < n - 1; i++) {
         if(arr[i] > arr[i+1]) {
             return false

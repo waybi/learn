@@ -9,8 +9,8 @@ module.exports = {
     },
     plugins:[
         new HtmlWebpackPlugin({
-            // template:'./index.html'
-            template:'./demo.html'
+            template:'./index.html'
+            // template:'./demo.html'
         })
     ],
     devServer:{

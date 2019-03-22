@@ -32,11 +32,18 @@
 
 // _------------------------- 算法 ---------------------
 import SortTestHelper from './Algorithms/SortTestHelper'
-// import selection from './Algorithms/Selection'
-// import insert from './Algorithms/insert'
+import selection from './Algorithms/Selection'
+import insert from './Algorithms/insert'
 import merge from './Algorithms/merge'
+import QuickSort from './Algorithms/QuickSort'
+import BubbleSort from './Algorithms/BubbleSort'
 
 const n = 8
 // var arr = SortTestHelper.generateRandomArray(n,0,n)
-// console.log('未排序的数组',arr)
-// SortTestHelper.testSort('selection srot',merge,arr,n)
+var arr = [4,3,2,1,5,6,7,8]
+console.log('未排序的数组',arr)
+// SortTestHelper.testSort('quick srot',QuickSort,arr,n)
+SortTestHelper.testSort('insert srot',insert,arr,n)
+// SortTestHelper.testSort('selection srot',selection,arr,n)
+// SortTestHelper.testSort('merge srot',merge,arr,n)
+// SortTestHelper.testSort('BubbleSort',BubbleSort,arr,n)

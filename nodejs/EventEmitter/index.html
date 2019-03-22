@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EventEmitter</title>
+    <script src="./index.js"></script>
+    <style type="text/css">
+        html {font-size: 16px}
+        ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        ul li {
+            margin-top: 10px;
+        }
+
+        ul li.light {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 auto;
+        }
+
+        ul li.red {
+            background-color: red;
+        }
+
+        ul li.green {
+            background-color: green;
+        }
+        p{font-size: 2rem;}
+    </style>
+</head>
+
+<body>
+    <p>rem你妹夫的</p>
+    <h3>红绿灯</h3>
+    <ul>
+        <li class="light red"></li>
+        <li class="text">
+            <h4>红灯亮了 暂停通行</h4>
+        </li>
+        <li class="car"></li>
+        <li class="people"></li>
+    </ul>
+    <script>
+        const event = new EventEmitter();
+        event.on('hello', function (res) {
+            console.log('hello ' + res);
+        });
+        event.on('world', function (res) {
+            console.log('world ' + res);
+        });
+        // event.on('hello', function (res) {
+        //     console.log('hello ' + res);
+        // });
+        // event.on('hello', function (res) {
+        //     console.log('hello ' + res);
+        // });
+        setTimeout(() => {
+            event.emit('hello', 'node.js1');
+            event.emit('hello', 'node.js2');
+            event.emit('hello', 'node.js3');
+        }, 1000);
+        const light = document.querySelector('.light');
+        const text = document.querySelector('.text');
+        const cars = document.querySelector('.car');
+        const peoples = document.querySelector('.people');
+        const container = text.parentNode;
+        const red = new EventEmitter();
+        const green = new EventEmitter();
+        const car = new EventEmitter();
+        const people = new EventEmitter();
+        car.on('汽车', (text) => {
+            cars.innerHTML = text;
+        });
+        people.on('行人', (text) => {
+            peoples.innerHTML = text;
+        });
+        red.on('红灯', function () {
+            container.style.color = 'red';
+            light.className = 'light red';
+            text.innerHTML = '红灯亮了 暂停通行';
+            car.emit('汽车', '汽车禁止通行...');
+            people.emit('行人', '行人禁止通行...');
+            setTimeout(() => {
+                green.emit('绿灯');
+            }, 3000)
+        });
+        green.on('绿灯', function () {
+            container.style.color = 'green';
+            light.className = 'light green';
+            text.innerHTML = '绿灯亮了 开始通行';
+            car.emit('汽车', '汽车开始通行...');
+            people.emit('行人', '行人开始通行...');
+            setTimeout(() => {
+                red.emit('红灯');
+            }, 4000);
+        });
+        red.emit('红灯');
+    </script>
+
+</body>
+
+</html>

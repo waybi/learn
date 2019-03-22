@@ -3,11 +3,11 @@
 // import swap from "./swap";
 export default function(arr) {
     var n = arr.length
-    for (let i = 0; i < n-1; i++) {
+    for (let i = 0; i < n; i++) {
         // 寻找[i, n)区间里的最小值的索引
         let minIndex = i
         for (let j = i+1; j < n; j++) {
-            console.log('j>>>>',j)
+            // console.log('j>>>>',j)
             if(arr[j] < arr[minIndex]) {        // 寻找最小的数
                 minIndex = j;                 // 将最小数的索引保存
             }

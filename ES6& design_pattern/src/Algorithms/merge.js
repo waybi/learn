@@ -50,7 +50,7 @@ function _mergeSort(arr, l, r) {
     if(l >= r){
         return
     }
-    debugger
+    // debugger
     let mid =  Math.floor(parseInt(l+r)/2) //中间值
     // console.log('递归',mid)
     _mergeSort(arr, l, mid)
