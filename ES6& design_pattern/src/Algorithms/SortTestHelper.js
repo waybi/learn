@@ -38,6 +38,8 @@ SortTestHelper.testSort = function(name, fn, arr, n) {
     }
     var total = (endTime - startTime) / 1000   + 's'
 
+    console.log('排序所花时间：'+ total)
+
 }
 
 /**

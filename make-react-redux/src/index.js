@@ -5,8 +5,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Header from './Header'
 import Content from './Content'
-import { Provider } from './react-redux'
-// import { Provider } from 'react-redux'
+// import { Provider } from './react-redux'
+import { Provider } from 'react-redux'
 // import { createStore } from 'redux'
 
 function createStore(reducer) {
@@ -23,10 +23,10 @@ function createStore(reducer) {
     return { getState, dispatch, subscribe }
 }
 
-function themeReducer(state, action) {
-    if (!state) return {
-        themeColor: 'red'
-    }
+const initialState = {
+  themeColor: 'red'
+};
+function themeReducer(state = initialState, action) {
     switch (action.type) {
         case 'CHANGE_COLOR':
             return { ...state, themeColor: action.themeColor }
@@ -35,7 +35,6 @@ function themeReducer(state, action) {
             return state
     }
 }
-
 const store = createStore(themeReducer)
 
 class Index extends Component {

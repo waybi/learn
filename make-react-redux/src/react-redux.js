@@ -61,6 +61,5 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
             return <WrappedComponent {...this.state.allProps} />
         }
     }
-
     return Connect
 }

@@ -2,6 +2,7 @@
     var jQuery = function (selector) {
         return new jQuery.fn.init(selector)
     }
+
     jQuery.fn = {
         css:function (key,value) {
             console.log(key)

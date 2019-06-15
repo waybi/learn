@@ -8,7 +8,7 @@ class Content extends Component {
     static propTypes = {
         store:PropTypes.object
     }
-    
+
     render() {
         return (
             <div>
@@ -24,5 +24,16 @@ const mapStateToProps = (state) => {
     }
 }
 Content = connect(mapStateToProps)(Content)
-
 export default Content
+
+
+
+function fn(store) {
+  return function (next) {
+    return function (action) {
+      console.log('beforeState', store.getState());
+      next(action);
+      console.log('nextState', store.getState());
+    };
+  };
+};

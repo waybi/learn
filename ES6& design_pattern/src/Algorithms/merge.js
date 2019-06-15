@@ -2,65 +2,42 @@
 // 归并排序
 
 
-/**
- * 进行merge操作
- * @param {*} arr 
- * @param {*} l 
- * @param {*} mid 
- * @param {*} r 
- */
-function _merge(arr, l, mid, r) {
-    // console.log('归并')
-    let aux = []
-    for(let i = l; i <= r; i++) {
-        aux[i-l] = arr[i]
+function _merge(l, r) {
+    let temp = [] 
+    let leftIndex = 0;
+    let rightIndex = 0;
+    
+    // 判断2个数组中元素大小，依次插入数组
+    while(l.length > leftIndex && r.length > rightIndex) {
+        if(l[leftIndex] <= r[rightIndex]){
+            temp.push(l[leftIndex])
+            leftIndex++;
+        }else{
+            temp.push(r[rightIndex])
+            rightIndex++;
+        }
     }
 
-    let i = l, j = mid + 1;
-    for (let k = l; k <= r ; k++) {
-        // 先判断数组是否越界，小于最小的索引和大于最大的索引
-        if( i > mid){
-            arr[k] = aux[j-l]
-            j++
-        }
-        else if( j > r ) {
-            arr[k] = aux[i-l]
-            i++
-        }
-        else if( aux[i-l] < aux[j-l] ){
-            arr[k] = aux[i-l]
-            i++
-        }
-        else {
-            arr[k] = aux[j-l]
-            j++
-        }
-        
-    }
-
+    // 合并剩余数组
+    return temp.concat(l.slice(leftIndex).concat(r.slice(rightIndex)))
 }
 
-/**
- * 递归使用归并排序 对 arr[l...r]的范围进行排序
- * @param {*} arr 
- * @param {*} l 
- * @param {*} r 
- */
-function _mergeSort(arr, l, r) {
-    if(l >= r){
-        return
-    }
-    // debugger
-    let mid =  Math.floor(parseInt(l+r)/2) //中间值
-    // console.log('递归',mid)
-    _mergeSort(arr, l, mid)
-    _mergeSort(arr, mid+1, r)
 
-    // 进行merge操作
-    _merge(arr, l, mid, r)
+function _mergeSort(arr) {
+    // 当任意数组分解到只有一个时返回。
+    if (arr.length <= 1) return arr
 
+    const middle = Math.floor(arr.length / 2) // 找到中间值
+
+    const left = _mergeSort(arr.slice(0, middle)) // 分割数组
+    const right = _mergeSort(arr.slice(middle))
+
+    // 合并
+    return _merge(left, right)
 }
 
-export default function(arr,n) {
-    _mergeSort(arr, 0, n-1)
+export default function(arr) {
+    const res = _mergeSort(arr)
+
+    return res
 }
