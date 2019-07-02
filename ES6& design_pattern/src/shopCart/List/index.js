@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import { GET_LIST } from '../config'
-import createItem from './createItem.js'
+import createItem from './createItem.js.js'
 
 export default class List {
 	constructor(app) {

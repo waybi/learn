@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import getCart from './GetCart.js'
+import getCart from './GetCart.js.js'
 
 export default class ShoppingCart {
 	constructor(app) {

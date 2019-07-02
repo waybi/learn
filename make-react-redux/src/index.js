@@ -35,6 +35,7 @@ function themeReducer(state = initialState, action) {
             return state
     }
 }
+
 const store = createStore(themeReducer)
 
 class Index extends Component {

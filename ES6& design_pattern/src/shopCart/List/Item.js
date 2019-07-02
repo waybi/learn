@@ -1,7 +1,7 @@
 import $ from 'jquery'
-import getCart from '../ShoppingCart/GetCart.js'
+import getCart from '../ShoppingCart/GetCart.js.js'
 import StateMachine from 'javascript-state-machine'
-import { log } from '../util/log.js'
+import { log } from '../util/log.js.js'
 
 export default class Item {
 	constructor(list,data) {

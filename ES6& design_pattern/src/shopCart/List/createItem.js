@@ -1,4 +1,4 @@
-import Item from './Item.js'
+import Item from './Item.js.js'
 
 function createDiscount(itemData) {
 	return new Proxy (itemData,{
