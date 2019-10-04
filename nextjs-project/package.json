@@ -1,0 +1,39 @@
+{
+  "name": "nextjs-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon server.js",
+    "build": "next build",
+    "start": "next start",
+    "export": "npm run build && next export"
+  },
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "antd": "^3.13.6",
+    "atob": "^2.1.2",
+    "axios": "^0.18.0",
+    "babel-plugin-import": "^1.11.0",
+    "babel-plugin-styled-components": "^1.10.6",
+    "cross-env": "^5.2.0",
+    "debug": "^4.1.1",
+    "github-markdown-css": "^3.0.1",
+    "http-proxy": "^1.17.0",
+    "ioredis": "^4.6.2",
+    "koa": "^2.8.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.10.1",
+    "lru-cache": "^5.1.1",
+    "markdown-it": "^8.4.2",
+    "next": "9.0.5",
+    "nodemon": "^1.19.2",
+    "nprogress": "^0.2.0",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.3.2"
+  }
+}

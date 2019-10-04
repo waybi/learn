@@ -1,0 +1,6 @@
+{
+    "emmet.triggerExpansionOnTab": true,
+    "workbench.editor.enablePreview": false,
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 2
+}

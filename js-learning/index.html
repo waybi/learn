@@ -1,13 +1,58 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Build a data app</title>
-</head>
-<body>
-  <div id="app"></div>
-  <script src="main.js"></script>
-</body>
+<html lang="en">
+  <head>
+    <title>css阻塞</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- <script src="./main.js"></script> -->
+    <!-- <script src="https://cdn.bootcss.com/react/16.9.0-alpha.0/cjs/react.development.js"></script> -->
+
+    <!-- <link
+      href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css"
+      rel="stylesheet"
+    /> -->
+  </head>
+  <body>
+    <style>
+      #lt,
+      #rt {
+        background: red;
+      }
+
+      #lt {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        background: #ff0;
+      }
+
+      #rt {
+        position: relative;
+        transform: translateX(200px)
+      }
+    </style>
+
+    <div id="lt"><h1>左边</h1></div>
+    <div id="rt"><h1>右边</h1></div>
+
+    <script>
+      var parent = document.getElementById("parent");
+      var child = document.getElementById("child");
+
+      //表示parent上面的click事件会在事件捕获的时候处理程序
+      parent.addEventListener(
+        "click",
+        function(event) {
+          console.log("parent");
+        },
+        true
+      );
+
+      child.addEventListener("click", function(event) {
+        console.log("child");
+      });
+    </script>
+  </body>
 </html>

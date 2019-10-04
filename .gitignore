@@ -34,8 +34,8 @@ node_modules
 .node_repl_history
 
 .idea/
-.history
 /build
 dist/
 server/config/development.js
 */development.js
+.history

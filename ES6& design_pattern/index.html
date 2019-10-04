@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>JavaScript设计模式与算法</title>
-	<script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom.js"></script>
-	<script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-class.js"></script>
-	<script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-props.js"></script>
-	<script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-style.js"></script>
-	<script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-eventlisteners.js"></script>
-	<script src="https://cdn.bootcss.com/snabbdom/0.7.1/h.js"></script>
-</head>
-<body>
-	<div id="app">
-		<h1>你好靓仔!!!</h1>
-	</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript设计模式与算法</title>
+    <script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom.js"></script>
+    <script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-class.js"></script>
+    <script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-props.js"></script>
+    <script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-style.js"></script>
+    <script src="https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-eventlisteners.js"></script>
+    <script src="https://cdn.bootcss.com/snabbdom/0.7.1/h.js"></script>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="icon"></div>
+      <div class="icon"></div>
+      <div class="icon"></div>
+    </div>
+  </body>
+  <style>
+    .main {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      background: black;
+    }
+    .icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: white;
+      flex: 0 1 auto;
+    }
+  </style>
+
+  <script>
+    var obj = { 1: 222, 2: 123, 5: 888 }
+
+    var arr = Array.from({ length: 12 }).map((_, index) =>
+      obj[index + 1] ? obj[index + 1] : null
+    )
+
+  </script>
 </html>

@@ -85,6 +85,7 @@ store.subscribe(() => {
     renderApp(newState, oldState) // 把新旧的 state 传进去渲染
     oldState = newState // 渲染完以后，新的 newState 变成了旧的 oldState，等待下一次数据变化重新渲染
 })
+
 renderApp(store.getState())
 store.dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《javascrip设计模式》' })
 store.dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'prink' }) // 修改标题颜色

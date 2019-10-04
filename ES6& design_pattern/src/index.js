@@ -37,7 +37,13 @@
 // import './DataStructure/StackBasedLinkedList'
 // import './DataStructure/SampleStackBrowser'
 // import './DataStructure/QueueBasedOnLinkedList'
-import './DataStructure/CircularQueue'
+// import './DataStructure/CircularQueue'
+
+
+// _------------------------- test ---------------------
+import './ES6/a'
+
+
 
 // _------------------------- 算法 ---------------------
 import SortTestHelper from './Algorithms/SortTestHelper'
