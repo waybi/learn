@@ -6,8 +6,10 @@ const session = require("koa-session");
 const app = next({ dev });
 const Redis = require("ioredis");
 const config = require("./config");
+const auth = require("./server/auth");
 const RedisSessionStore = require("./server/session-store");
 const handle = app.getRequestHandler(); // 处理http请求
+const api = require('./server/api')
 
 let index = 0;
 
@@ -28,6 +30,11 @@ app.prepare().then(() => {
   // use koa-session
   server.use(session(SESSION_CONFIG, server));
 
+  //配置处理github的 oauth登录
+  auth(router);
+  api(router);
+
+
   //   router.get('/a/:id', async ctx => {
   //     const id = ctx.params.id
   //     console.log(id);
@@ -40,7 +47,7 @@ app.prepare().then(() => {
   //   })
 
   server.use(async (ctx, next) => {
-    console.log("session is:", ctx.session);
+    // console.log("session is:", ctx.session);
 
     await next();
   });
@@ -56,7 +63,7 @@ app.prepare().then(() => {
   });
 
   server.use(async (ctx, next) => {
-    console.log(ctx.cookies.get("jid"));
+    // console.log(ctx.cookies.get("jid"));
 
     await next();
   });

@@ -1,7 +1,42 @@
-const withCss = require('@zeit/next-css')
+const withCss = require("@zeit/next-css");
+const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 
-if (typeof require !== 'undefined') {
-  require.extensions['.css'] = file => {}
+const config = require("./config");
+
+if (typeof require !== "undefined") {
+  require.extensions[".css"] = file => {};
 }
 
-module.exports = withCss({})
+const isDev = process.env.NODE_ENV === "development";
+
+const GITHUB_AUTH_BASE_URL = "https://github.com/login/oauth/authorize";
+const GITHUB_CLIENT_ID = config.github.client_id;
+const REDIRECT_URI = isDev
+  ? "http://localhost:3000/auth"
+  : "http://localhost:3000/auth";
+const SCOPE = "user";
+
+const AUTH_URI = `${GITHUB_AUTH_BASE_URL}?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
+
+const API_BASE = isDev ? "http://localhost:3000" : "http://localhost:3000";
+
+module.exports = withBundleAnalyzer(
+  withCss({
+    env: {
+      GITHUB_AUTH_URI: AUTH_URI,
+      API_BASE
+    },
+    analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
+    analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
+    bundleAnalyzerConfig: {
+      server: {
+        analyzerMode: "static",
+        reportFilename: "../bundles/server.html"
+      },
+      browser: {
+        analyzerMode: "static",
+        reportFilename: "../bundles/client.html"
+      }
+    }
+  })
+);
