@@ -2,17 +2,54 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "./index.css";
 import axios from "axios";
+import { Button } from "antd";
+
+import Router from "next/router";
+
+import Link from "next/link";
+
+class AA extends React.Component{
+
+  componentDidMount() {
+    // location.href = process.env.GITHUB_AUTH_URI
+  }
+
+  render() {
+    return <h1>登录</h1>
+  }
+
+}
 
 function Home({ user, userRepos, starredRepos }) {
   // useEffect(() => {
   //   axios.get("/api/user/config").then(res => console.log(res));
   // }, []);
 
+  const href = () => {
+    Router.push(
+      {
+        pathname: "/test/a",
+        query: {
+          id: 2
+        }
+      },
+      "/test/a/2"
+    );
+  };
+
   return (
     <div>
       <div className="hero">
         <h1 className="title">Welcome to Next.js!</h1>
       </div>
+
+      <AA />
+
+      <Link href={"/a?id=2"} as="/a/2">
+        <Button> waybi a </Button>
+      </Link>
+
+      <Button onClick={href}> /dfdfd/dfdf </Button>
 
       <style jsx>{`
         .hero {
@@ -74,8 +111,6 @@ function Home({ user, userRepos, starredRepos }) {
 }
 
 Home.getInitialProps = async function(ctx) {
-  console.log("Home >>>> getInitialProps");
-
   return {};
 };
 

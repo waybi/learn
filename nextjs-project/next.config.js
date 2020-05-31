@@ -12,13 +12,13 @@ const isDev = process.env.NODE_ENV === "development";
 const GITHUB_AUTH_BASE_URL = "https://github.com/login/oauth/authorize";
 const GITHUB_CLIENT_ID = config.github.client_id;
 const REDIRECT_URI = isDev
-  ? "http://localhost:3000/auth"
-  : "http://localhost:3000/auth";
+  ? "http://localhost:3333/auth"
+  : "http://localhost:3333/auth";
 const SCOPE = "user";
 
 const AUTH_URI = `${GITHUB_AUTH_BASE_URL}?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
 
-const API_BASE = isDev ? "http://localhost:3000" : "http://localhost:3000";
+const API_BASE = isDev ? "http://localhost:3333" : "http://localhost:3333";
 
 module.exports = withBundleAnalyzer(
   withCss({

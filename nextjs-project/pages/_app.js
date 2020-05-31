@@ -1,10 +1,11 @@
-import App, { Container } from "next/app";
+import App from "next/app";
 import Router from "next/router";
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux";
 
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 
 import withReduxStore from "../lib/with-redux";
+import testHoc from "../lib/testHoc";
 
 import Layout from "../components/Layout";
 import PageLoading from "../components/PageLoading";
@@ -46,19 +47,15 @@ class MyApp extends App {
     const { Component, pageProps, reduxStore } = this.props;
     const { loading } = this.state;
 
-    // console.log(loading)
-
     return (
-      <Container>
-        <Provider store={reduxStore}>
-          {loading ? <PageLoading /> : null}
-          <Layout dispatch={reduxStore.dispatch}>
-            <Component {...pageProps} />
-          </Layout>
-        </Provider>
-      </Container>
+      <Provider store={reduxStore}>
+        {loading ? <PageLoading /> : null}
+        <Layout dispatch={reduxStore.dispatch}>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     );
   }
 }
 
-export default withReduxStore(MyApp);
+export default testHoc(withReduxStore(MyApp));

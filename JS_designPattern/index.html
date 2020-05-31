@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JavaScript设计模式和开发实践</title>
+  </head>
+  <body>
+    <!-- <script src="./ChainResponsibility/index.js"></script> -->
+
+    <button id="button"></button>
+    <script>
+      Function.prototype.before = function(beforefn) {
+        var __self = this
+        return function() {
+          beforefn.apply(this, arguments)
+          console.log('this->', this)
+          return __self.apply(this, arguments)
+        }
+      }
+
+      Function.prototype.after = function(afterfn) {
+        var __self = this
+        return function() {
+          var ret = __self.apply(this, arguments)
+          afterfn.apply(this, arguments)
+          return ret
+        }
+      }
+
+      window.onload = function() {
+        console.log(1)
+      }
+      window.onload = (window.onload || function() {})
+        .after(function() {
+          console.log(2)
+        })
+        .after(function() {
+          console.log(3)
+        })
+        // .after(function() {
+        //   console.log(4)
+        // })
+
+      // document.getElementById = document.getElementById.before(function() {
+      //   console.log(111)
+      // })
+      // var button = document.getElementById('button')
+      // // console.log(button)
+    </script>
+  </body>
+</html>

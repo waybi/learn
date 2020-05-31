@@ -25,14 +25,14 @@ module.exports = function(router) {
         Accept: "application/json"
       }
     });
-
-    debug(
-      `request github auth with code ${code} status ${result.status} and data `,
-      result.data
-    );
-
-    if (result.status === 200) {
-
+    
+    // debug(
+    //   `request github auth with code ${code} status ${result.status} and data `,
+    //   result.data
+    // );
+    //
+    if (result.status === 200 && (result.data && !result.data.error)) {
+      console.log(ctx.session)
       ctx.session.githubAuth = result.data;
       const userInfo = await axios.get(
         `https://api.github.com/user?access_token=${result.data.access_token}`

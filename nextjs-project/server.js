@@ -8,10 +8,8 @@ const Redis = require("ioredis");
 const config = require("./config");
 const auth = require("./server/auth");
 const RedisSessionStore = require("./server/session-store");
-const handle = app.getRequestHandler(); // 处理http请求
 const api = require('./server/api')
-
-let index = 0;
+const handle = app.getRequestHandler()
 
 // 需要开启数据库就解除这个注释
 const redis = new Redis(config.redis);
@@ -26,7 +24,7 @@ app.prepare().then(() => {
     // 需要开启数据库就解除这个注释
     store: new RedisSessionStore(redis)
   };
-
+  
   // use koa-session
   server.use(session(SESSION_CONFIG, server));
 
@@ -34,57 +32,22 @@ app.prepare().then(() => {
   auth(router);
   api(router);
 
-
-  //   router.get('/a/:id', async ctx => {
-  //     const id = ctx.params.id
-  //     console.log(id);
-
-  //     await handle(ctx.req, ctx.res, {
-  //       pathname: '/a',
-  //       query: { id }
-  //     })
-  //     ctx.response = false
-  //   })
-
-  server.use(async (ctx, next) => {
-    // console.log("session is:", ctx.session);
-
-    await next();
-  });
-
-  router.get("/set/user", async ctx => {
-    // ctx.response = false;
-    ctx.session.user = {
-      name: "waybi",
-      age: 18
-    };
-
-    ctx.body = "set session success";
-  });
-
-  server.use(async (ctx, next) => {
-    // console.log(ctx.cookies.get("jid"));
-
-    await next();
-  });
+  router.get('*', async ctx => {
+    ctx.req.session = ctx.session
+    // handle的API在这里
+    // https://github.com/zeit/next.js/blob/canary/packages/next-server/server/next-server.ts
+    await handle(ctx.req, ctx.res)
+    ctx.respond = false
+  })
 
   server.use(router.routes());
-
-  server.use(async (ctx, next) => {
-    ctx.cookies.set("id", index, {
-      httpOnly: false
-    });
-    index += 1;
-    await handle(ctx.req, ctx.res);
-    ctx.response = false;
-  });
 
   server.use(async (ctx, next) => {
     ctx.res.statusCode = 200;
     await next();
   });
 
-  server.listen(3000, () => {
-    console.log("> Ready on http://localhost:3000");
+  server.listen(3333, () => {
+    console.log("> Ready on http://localhost:3333");
   });
 });

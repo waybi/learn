@@ -39,3 +39,4 @@ dist/
 server/config/development.js
 */development.js
 .history
+.vscode

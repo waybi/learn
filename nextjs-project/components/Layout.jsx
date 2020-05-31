@@ -55,16 +55,18 @@ function MyLayout({ children, user, router: { query }, logout }) {
           <div className="header-left">
             <div className="banner">
               <Link href="/">
-                <Icon
-                  type="github"
-                  style={{
-                    color: "white",
-                    fontSize: 40,
-                    display: "block",
-                    paddingTop: 10,
-                    marginRight: 20
-                  }}
-                />
+                <a>
+                  <Icon
+                    type="github"
+                    style={{
+                      color: "white",
+                      fontSize: 40,
+                      display: "block",
+                      paddingTop: 10,
+                      marginRight: 20
+                    }}
+                  />
+                </a>
               </Link>
             </div>
             <div style={{ float: "left" }}>

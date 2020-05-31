@@ -63,12 +63,13 @@ export default App => {
 
       let appProps = {};
       if (typeof App.getInitialProps === "function") {
-        // appProps = await App.getInitialProps(appContext);
+        // 以下代码保证子组建的getInitialProps正常运行
+        appProps = await App.getInitialProps(appContext);
       }
 
       return {
         ...appProps,
-        initialReduxState: reduxStore.getState(),
+        initialReduxState: reduxStore.getState()
         // cachedRepos: getAllCachedRepos(),
         // modelData: dumpModel()
       };
